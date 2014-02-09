@@ -1,14 +1,14 @@
 {
   "name": "coffeebot-wars",
   "author": "Tad Thorley",
-  "description": "robots written in coffeescript to doing battle",
+  "description": "robots written in coffeescript doing battle",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "coffee app.coffee"
   },
   "dependencies": {
-    "coffee-script": "1.6.x",
+    "coffee-script": "1.7.x",
     "express": "3.x"
   }
 }
