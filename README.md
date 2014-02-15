@@ -11,6 +11,7 @@ To run:
 ### Coffeebot API
 general:
 `energy()` returns the current energy level
+
 `turret()` returns the current angle of the turret
 `turret(angle)` sets the current angle of the turret
 `regenerate(energy)` uses _energy_ amount to restore hitpoints (must be stationary)
