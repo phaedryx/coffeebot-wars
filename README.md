@@ -17,7 +17,8 @@ To run:
 
 `turret()` returns the current angle of the turret
 
-`turret(angle)` sets the current angle of the turret
+`turret(angle)` sets the current _angle_ of the turret. Returns true if successful
+and false if insuccessful (not enough energy)
 
 `regenerate(energy)` uses _energy_ amount to restore hitpoints (must be stationary)
 
