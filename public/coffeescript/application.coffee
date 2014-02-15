@@ -1,4 +1,4 @@
 $(document).foundation()
 
 $ ->
-  new CoffeebotWar(arenaID: 'arena', botlistID: 'botlist')
+  new coffeebot.War(arenaID: 'arena', botlistID: 'botlist')

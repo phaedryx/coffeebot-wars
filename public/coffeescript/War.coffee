@@ -1,30 +1,25 @@
 class Arena
   @WIDTH:  640
   @HEIGHT: 640
-  @ROBOT_RADIUS: 16
-  @DEGREES_PER_RADIAN: 180.0 / Math.PI
-  @RADIANS_PER_DEGREE: Math.PI / 180.0
 
   constructor: (@canvasID) ->
-    @setupCanvas()
     @setupContext()
-    @angle = 0
 
-  setupCanvas: ->
+  setupContext: ->
     @canvas = document.getElementById(@canvasID)
     @canvas.height = Arena.HEIGHT
     @canvas.width  = Arena.WIDTH
-
-  setupContext: ->
     @context = @canvas.getContext '2d'
     @context.lineWidth = 2
+    @context.DEGREES_PER_RADIAN = 180.0 / Math.PI
+    @context.RADIANS_PER_DEGREE = Math.PI / 180.0
     @context.clear = ->
       @save()
       @setTransform(1, 0, 0, 1, 0, 0)
       @clearRect(0, 0, Arena.WIDTH, Arena.HEIGHT)
       @restore()
-    @context.d2r = (angle) -> angle * Arena.RADIANS_PER_DEGREE
-    @context.r2d = (angle) -> angle * Arena.DEGREES_PER_RADIAN
+    @context.d2r = (angle) -> angle * @RADIANS_PER_DEGREE
+    @context.r2d = (angle) -> angle * @DEGREES_PER_RADIAN
     @context.circle = (x, y, radius, color) ->
       @beginPath()
       @arc(x, y, radius, 0, Math.PI*2, true)
@@ -37,16 +32,17 @@ class Arena
       @closePath()
       @fillStyle = color
       @fill()
+    @context.distance = (x1, y1, x2, y2) ->
+      Math.sqrt((x2-x1)*(x2-x1) + (y2-y1)*(y2-y1))
     @context.vector = (x, y, angle, length, color) ->
-      xp = x + Math.cos(@d2r(angle)) * length
-      yp = y + Math.sin(@d2r(angle)) * length
+      x1 = x + Math.cos(@d2r(angle)) * length
+      y1 = y + Math.sin(@d2r(angle)) * length
       @beginPath()
       @moveTo(x, y)
-      @lineTo(xp, yp)
+      @lineTo(x1, y1)
       @closePath()
       @strokeStyle = color
       @stroke()
-
 
 # animation functions
   animate: =>
@@ -55,10 +51,7 @@ class Arena
       requestAnimationFrame(@animate)
 
   tick: ->
-    @context.clear()
-    @context.circle(320,320, 16, 'red')
-    @context.vector(320,320, @angle, 16, 'red')
-    @angle += 1
+    # battle here
 
   play: ->
     @run = true
@@ -77,15 +70,23 @@ class Arena
 # math helper functions
   getRandomInt: (min, max) -> Math.floor(Math.random() * (max - min + 1) + min)
 
+class Robot
+  @RADIUS: 16
+  @MAX_ENERGY: 5150
+  @energy = ->
+    # returns energy amount
 
 class Botlist
   constructor: (botlistID) ->
     @listnode = document.getElementById(botlistID)
 
 
-class CoffeebotWar
+class War
   constructor: (params) ->
-    window.arena    = new Arena(params.arenaID)
+    @arena    = new Arena(params.arenaID)
     @botlist  = new Botlist(params.botlistID)
 
-window.CoffeebotWar = CoffeebotWar
+window.coffeebot       = {}
+window.coffeebot.Robot = Robot
+window.coffeebot.War   = War
+
