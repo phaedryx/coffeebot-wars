@@ -36,7 +36,7 @@ To run:
 
 `speedY()` returns the y-axis speed
 
-`speedY(speed)` set the y-axis speed (can be positive of negative)
+`speedY(speed)` set the y-axis speed (can be positive or negative)
 
 
 **damage detection:**
