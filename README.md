@@ -9,7 +9,7 @@ To run:
 
 
 ### Coffeebot API
-general:
+**general:**
 
 `energy()` returns the current energy level
 
@@ -22,7 +22,7 @@ general:
 `regenerate(energy)` uses _energy_ amount to restore hitpoints (must be stationary)
 
 
-movement:
+**movement:**
 
 `positionX()` returns the position along the x-axis
 
@@ -39,7 +39,7 @@ movement:
 `speedY(speed)` set the y-axis speed (can be positive of negative)
 
 
-damage detection:
+**damage detection:**
 
 `hitpoints()` returns current hitpoint amount
 
@@ -48,7 +48,7 @@ damage detection:
 `collisionBot()` returns true if currently colliding with another bot
 
 
-opponent detection:
+**opponent detection:**
 
 `look()` returns the position of the closest bot along the turret's sight line (or null if none)
 
@@ -57,7 +57,7 @@ opponent detection:
 `radar(distance)` returns the position of all entities within radius _distance_
 
 
-attack:
+**attack:**
 
 `fire(speed, payload)` fire a projectile at _speed_ doing _payload_ damage if it hits
 
